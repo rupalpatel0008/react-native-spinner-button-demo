@@ -11,6 +11,7 @@ import {
   UIActivityIndicator,
   WaveIndicator,
 } from 'react-native-indicators';
+import * as Animatable from 'react-native-animatable';
 import styles from './styles/SpinnerButtonStyle';
 
 function getSpinnerBackgroundStyle (spinnerAnimationType, customButtonStyle, defaultButtonStyle) {
@@ -98,80 +99,81 @@ const Spinner = (props) => {
   let defaultButtonStyle = StyleSheet.flatten(styles.defaultButtonStyle);
   let height = customButtonStyle.height ? customButtonStyle.height : defaultButtonStyle.height;
   let customSpinnerStyle = getSpinnerBackgroundStyle(spinnerAnimationType, customButtonStyle, defaultButtonStyle);
+  let animationType = isLoading ? 'fadeIn' : 'fadeOut';
   console.log('customSpinnerStyle = ', customSpinnerStyle);
   switch (spinnerAnimationType) {
     case 'BallIndicator':
       return (
-        <View style={[styles.defaultSpinnerContainerStyle, customSpinnerStyle]}>
+        <Animatable.View animation={animationType} style={[styles.defaultSpinnerContainerStyle, customSpinnerStyle]}>
           <BallIndicator
             color={spinnerColor || 'rgb(255, 0, 255)'}
             count={count}
             size={height - 20}
           />
-        </View>
+        </Animatable.View>
       );
     case 'BarIndicator':
       return (
-        <View style={[styles.defaultSpinnerContainerStyle, customSpinnerStyle]}>
+        <Animatable.View animation={animationType} style={[styles.defaultSpinnerContainerStyle, customSpinnerStyle]}>
           <BarIndicator
             color={spinnerColor || 'rgb(255, 0, 255)'}
             count={count}
             size={height - 10}
           />
-        </View>
+        </Animatable.View>
       );
     case 'DotIndicator':
       return (
-        <View style={[styles.defaultSpinnerContainerStyle, customSpinnerStyle]}>
+        <Animatable.View animation={animationType} style={[styles.defaultSpinnerContainerStyle, customSpinnerStyle]}>
           <DotIndicator
             color={spinnerColor || 'rgb(255, 0, 255)'}
             count={count}
             size={size}
           />
-        </View>
+        </Animatable.View>
       );
     case 'MaterialIndicator':
       // Note: To overcome https://github.com/n4kz/react-native-indicators/issues/11 and 
       //   https://github.com/n4kz/react-native-indicators/issues/6 ActivityIndicator is used in android
       if (Platform.OS === 'android') {
         return (
-          <View style={[styles.defaultSpinnerContainerStyle, customSpinnerStyle]}>
+          <Animatable.View animation={animationType} style={[styles.defaultSpinnerContainerStyle, customSpinnerStyle]}>
             <ActivityIndicator
               color={spinnerColor || 'rgb(255, 0, 255)'}
               size={height - 10}
             />
-          </View>
+          </Animatable.View>
         );
       }
       return (
-        <View style={[styles.defaultSpinnerContainerStyle, customSpinnerStyle]}>
+        <Animatable.View animation={animationType} style={[styles.defaultSpinnerContainerStyle, customSpinnerStyle]}>
           <MaterialIndicator
             color={spinnerColor || 'rgb(255, 0, 255)'}
             size={height - 10}
           />
-        </View>
+        </Animatable.View>
       );
     case 'PacmanIndicator':
       return (
-        <View style={[styles.defaultSpinnerContainerStyle, customSpinnerStyle]}>
+        <Animatable.View animation={animationType} style={[styles.defaultSpinnerContainerStyle, customSpinnerStyle]}>
           <PacmanIndicator
             color={spinnerColor || 'rgb(255, 0, 255)'}
             size={height - 10}
           />
-        </View>
+        </Animatable.View>
       );
     case 'PulseIndicator':
       return (
-        <View style={[styles.defaultSpinnerContainerStyle, customSpinnerStyle]}>
+        <Animatable.View animation={animationType} style={[styles.defaultSpinnerContainerStyle, customSpinnerStyle]}>
           <PulseIndicator
             color={spinnerColor || 'rgb(255, 0, 255)'}
             size={height}
           />
-        </View>
+        </Animatable.View>
       );
     case 'SkypeIndicator':
       return (
-        <View style={[styles.defaultSpinnerContainerStyle, customSpinnerStyle]}>
+        <Animatable.View animation={animationType} style={[styles.defaultSpinnerContainerStyle, customSpinnerStyle]}>
           <SkypeIndicator
             color={spinnerColor || 'rgb(255, 0, 255)'}
             count={count}
@@ -179,21 +181,21 @@ const Spinner = (props) => {
             minScale={minScale}
             maxScale={maxScale}
           />
-        </View>
+        </Animatable.View>
       );
     case 'UIActivityIndicator':
       return (
-        <View style={[styles.defaultSpinnerContainerStyle, customSpinnerStyle]}>
+        <Animatable.View animation={animationType} style={[styles.defaultSpinnerContainerStyle, customSpinnerStyle]}>
           <UIActivityIndicator
             color={spinnerColor || 'rgb(255, 0, 255)'}
             count={count}
             size={height - 10}
           />
-        </View>
+        </Animatable.View>
       );
     case 'WaveIndicator':
       return (
-        <View style={[styles.defaultSpinnerContainerStyle, customSpinnerStyle]}>
+        <Animatable.View animation={animationType} style={[styles.defaultSpinnerContainerStyle, customSpinnerStyle]}>
           <WaveIndicator
             color={spinnerColor || 'rgb(255, 0, 255)'}
             count={count}
@@ -201,24 +203,25 @@ const Spinner = (props) => {
             waveFactor={waveFactor}
             waveMode={waveMode}
           />
-        </View>
+        </Animatable.View>
       );
     default:
       console.log('count in default spinner = ', props.count)
       return (
-        <View style={[styles.defaultSpinnerContainerStyle, customSpinnerStyle]}>
+        <Animatable.View animation={animationType} style={[styles.defaultSpinnerContainerStyle, customSpinnerStyle]}>
           <BallIndicator
             color={spinnerColor || 'rgb(255, 0, 255)'}
             count={count}
             size={height - 20}
           />
-        </View>
+        </Animatable.View>
       );
   }
 }
 
 const CustomButton = (props) => {
   const { buttonStyle, onPress, children } = props;
+  // @ToDo: Start with passing isLoading to button and wrap button in <Animated.View>
   return (
     <TouchableOpacity
       style={[styles.defaultButtonStyle, buttonStyle]}
