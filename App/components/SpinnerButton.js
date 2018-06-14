@@ -93,18 +93,18 @@ const Spinner = (props) => {
     maxScale,
     waveFactor,
     waveMode,
-    size
+    size,
+    animationType
   } = props;
   let customButtonStyle = StyleSheet.flatten(buttonStyle);
   let defaultButtonStyle = StyleSheet.flatten(styles.defaultButtonStyle);
   let height = customButtonStyle.height ? customButtonStyle.height : defaultButtonStyle.height;
   let customSpinnerStyle = getSpinnerBackgroundStyle(spinnerAnimationType, customButtonStyle, defaultButtonStyle);
-  let animationType = isLoading ? 'fadeIn' : 'fadeOut';
   console.log('customSpinnerStyle = ', customSpinnerStyle);
   switch (spinnerAnimationType) {
     case 'BallIndicator':
       return (
-        <Animatable.View animation={animationType} style={[styles.defaultSpinnerContainerStyle, customSpinnerStyle]}>
+        <Animatable.View animation={animationType || 'fadeIn'} style={[styles.defaultSpinnerContainerStyle, customSpinnerStyle]}>
           <BallIndicator
             color={spinnerColor || 'rgb(255, 0, 255)'}
             count={count}
@@ -114,7 +114,7 @@ const Spinner = (props) => {
       );
     case 'BarIndicator':
       return (
-        <Animatable.View animation={animationType} style={[styles.defaultSpinnerContainerStyle, customSpinnerStyle]}>
+        <Animatable.View animation={animationType || 'fadeIn'} style={[styles.defaultSpinnerContainerStyle, customSpinnerStyle]}>
           <BarIndicator
             color={spinnerColor || 'rgb(255, 0, 255)'}
             count={count}
@@ -124,7 +124,7 @@ const Spinner = (props) => {
       );
     case 'DotIndicator':
       return (
-        <Animatable.View animation={animationType} style={[styles.defaultSpinnerContainerStyle, customSpinnerStyle]}>
+        <Animatable.View animation={animationType || 'fadeIn'} style={[styles.defaultSpinnerContainerStyle, customSpinnerStyle]}>
           <DotIndicator
             color={spinnerColor || 'rgb(255, 0, 255)'}
             count={count}
@@ -137,7 +137,7 @@ const Spinner = (props) => {
       //   https://github.com/n4kz/react-native-indicators/issues/6 ActivityIndicator is used in android
       if (Platform.OS === 'android') {
         return (
-          <Animatable.View animation={animationType} style={[styles.defaultSpinnerContainerStyle, customSpinnerStyle]}>
+          <Animatable.View animation={animationType || 'fadeIn'} style={[styles.defaultSpinnerContainerStyle, customSpinnerStyle]}>
             <ActivityIndicator
               color={spinnerColor || 'rgb(255, 0, 255)'}
               size={height - 10}
@@ -146,7 +146,7 @@ const Spinner = (props) => {
         );
       }
       return (
-        <Animatable.View animation={animationType} style={[styles.defaultSpinnerContainerStyle, customSpinnerStyle]}>
+        <Animatable.View animation={animationType || 'fadeIn'} style={[styles.defaultSpinnerContainerStyle, customSpinnerStyle]}>
           <MaterialIndicator
             color={spinnerColor || 'rgb(255, 0, 255)'}
             size={height - 10}
@@ -155,7 +155,7 @@ const Spinner = (props) => {
       );
     case 'PacmanIndicator':
       return (
-        <Animatable.View animation={animationType} style={[styles.defaultSpinnerContainerStyle, customSpinnerStyle]}>
+        <Animatable.View animation={animationType || 'fadeIn'} style={[styles.defaultSpinnerContainerStyle, customSpinnerStyle]}>
           <PacmanIndicator
             color={spinnerColor || 'rgb(255, 0, 255)'}
             size={height - 10}
@@ -164,7 +164,7 @@ const Spinner = (props) => {
       );
     case 'PulseIndicator':
       return (
-        <Animatable.View animation={animationType} style={[styles.defaultSpinnerContainerStyle, customSpinnerStyle]}>
+        <Animatable.View animation={animationType || 'fadeIn'} style={[styles.defaultSpinnerContainerStyle, customSpinnerStyle]}>
           <PulseIndicator
             color={spinnerColor || 'rgb(255, 0, 255)'}
             size={height}
@@ -173,7 +173,7 @@ const Spinner = (props) => {
       );
     case 'SkypeIndicator':
       return (
-        <Animatable.View animation={animationType} style={[styles.defaultSpinnerContainerStyle, customSpinnerStyle]}>
+        <Animatable.View animation={animationType || 'fadeIn'} style={[styles.defaultSpinnerContainerStyle, customSpinnerStyle]}>
           <SkypeIndicator
             color={spinnerColor || 'rgb(255, 0, 255)'}
             count={count}
@@ -185,7 +185,7 @@ const Spinner = (props) => {
       );
     case 'UIActivityIndicator':
       return (
-        <Animatable.View animation={animationType} style={[styles.defaultSpinnerContainerStyle, customSpinnerStyle]}>
+        <Animatable.View animation={animationType || 'fadeIn'} style={[styles.defaultSpinnerContainerStyle, customSpinnerStyle]}>
           <UIActivityIndicator
             color={spinnerColor || 'rgb(255, 0, 255)'}
             count={count}
@@ -195,7 +195,7 @@ const Spinner = (props) => {
       );
     case 'WaveIndicator':
       return (
-        <Animatable.View animation={animationType} style={[styles.defaultSpinnerContainerStyle, customSpinnerStyle]}>
+        <Animatable.View animation={animationType || 'fadeIn'} style={[styles.defaultSpinnerContainerStyle, customSpinnerStyle]}>
           <WaveIndicator
             color={spinnerColor || 'rgb(255, 0, 255)'}
             count={count}
@@ -208,7 +208,7 @@ const Spinner = (props) => {
     default:
       console.log('count in default spinner = ', props.count)
       return (
-        <Animatable.View animation={animationType} style={[styles.defaultSpinnerContainerStyle, customSpinnerStyle]}>
+        <Animatable.View animation={animationType || 'fadeIn'} style={[styles.defaultSpinnerContainerStyle, customSpinnerStyle]}>
           <BallIndicator
             color={spinnerColor || 'rgb(255, 0, 255)'}
             count={count}
@@ -220,20 +220,22 @@ const Spinner = (props) => {
 }
 
 const CustomButton = (props) => {
-  const { buttonStyle, onPress, children } = props;
-  // @ToDo: Start with passing isLoading to button and wrap button in <Animated.View>
+  const { animationType, buttonStyle, onPress, isLoading, children } = props;
   return (
-    <TouchableOpacity
-      style={[styles.defaultButtonStyle, buttonStyle]}
-      onPress={onPress}
-    >
-      {children}
-    </TouchableOpacity>
+    <Animatable.View animation={animationType || 'fadeIn'}>
+      <TouchableOpacity
+        style={[styles.defaultButtonStyle, buttonStyle]}
+        onPress={onPress}
+      >
+        {children}
+      </TouchableOpacity>
+    </Animatable.View>
   );
 };
 
 const SpinnerButton = (props) => {
   const {
+    animationType,
     buttonStyle,
     spinnerColor,
     spinnerAnimationType,
@@ -250,7 +252,7 @@ const SpinnerButton = (props) => {
   if (isLoading) {
     return (
       <Spinner
-        spinnerColor={spinnerColor || 'rgb(255, 0, 255)'}
+        spinnerColor={spinnerColor || 'rgb(255, 255, 255)'}
         spinnerAnimationType={spinnerAnimationType}
         buttonStyle={buttonStyle}
         count={count}
@@ -259,6 +261,8 @@ const SpinnerButton = (props) => {
         waveFactor={waveFactor}
         waveMode={waveMode}
         size={size}
+        isLoading={isLoading}
+        animationType={animationType}
       />
     );
   }
@@ -267,6 +271,8 @@ const SpinnerButton = (props) => {
       buttonStyle={buttonStyle}
       onPress={onPress}
       children={children}
+      isLoading={isLoading}
+      animationType={animationType}
     />
   );
 };

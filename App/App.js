@@ -34,7 +34,7 @@ export default class App extends Component {
               this.setState({ defaultLoading: true });
               setTimeout(() => {
                 this.setState({ defaultLoading: false });
-              }, 10000);
+              }, 3000);
             }}
             count={10}
           >
@@ -48,8 +48,9 @@ export default class App extends Component {
               this.setState({ barLoading: true });
               setTimeout(() => {
                 this.setState({ barLoading: false });
-              }, 10000);
+              }, 3000);
             }}
+            animationType={'flipInY'}
           >
             <Text style={styles.buttonText}>Bar SpinnerButton</Text>
           </SpinnerButton>
@@ -63,8 +64,9 @@ export default class App extends Component {
               this.setState({ dotLoading: true });
               setTimeout(() => {
                 this.setState({ dotLoading: false });
-              }, 10000);
+              }, 3000);
             }}
+            animationType={'flipInX'}
           >
             <Text style={styles.buttonText}>Dot SpinnerButton</Text>
           </SpinnerButton>
@@ -76,7 +78,7 @@ export default class App extends Component {
               this.setState({ materialLoading: true });
               setTimeout(() => {
                 this.setState({ materialLoading: false });
-              }, 10000);
+              }, 3000);
             }}
           >
             <Text style={styles.buttonText}>Material SpinnerButton</Text>
@@ -89,7 +91,7 @@ export default class App extends Component {
               this.setState({ pacmanLoading: true });
               setTimeout(() => {
                 this.setState({ pacmanLoading: false });
-              }, 10000);
+              }, 3000);
             }}
           >
             <Text style={styles.buttonText}>Pacman SpinnerButton</Text>
@@ -102,7 +104,7 @@ export default class App extends Component {
               this.setState({ pulseLoading: true });
               setTimeout(() => {
                 this.setState({ pulseLoading: false });
-              }, 10000);
+              }, 3000);
             }}
           >
             <Text style={styles.buttonText}>Pulse SpinnerButton</Text>
@@ -115,7 +117,7 @@ export default class App extends Component {
               this.setState({ skypeLoading: true });
               setTimeout(() => {
                 this.setState({ skypeLoading: false });
-              }, 10000);
+              }, 3000);
             }}
           >
             <Text style={styles.buttonText}>Skype SpinnerButton</Text>
@@ -128,7 +130,7 @@ export default class App extends Component {
               this.setState({ uiAcivityLoading: true });
               setTimeout(() => {
                 this.setState({ uiAcivityLoading: false });
-              }, 10000);
+              }, 3000);
             }}
           >
             <Text style={styles.buttonText}>UIActivity SpinnerButton</Text>
@@ -141,7 +143,7 @@ export default class App extends Component {
               this.setState({ waveLoading: true });
               setTimeout(() => {
                 this.setState({ waveLoading: false });
-              }, 10000);
+              }, 3000);
             }}
           >
             <Text style={styles.buttonText}>Wave SpinnerButton</Text>
