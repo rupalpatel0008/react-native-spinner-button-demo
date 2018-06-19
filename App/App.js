@@ -6,7 +6,8 @@ import {
   View
 } from 'react-native';
 import styles from './styles/AppStyles';
-import SpinnerButton from './components/SpinnerButton';
+import SpinnerButton from 'react-native-spinner-button';
+// import SpinnerButton from './components/SpinnerButton';
 
 export default class App extends Component {
   constructor(props) {
@@ -36,14 +37,14 @@ export default class App extends Component {
                 this.setState({ defaultLoading: false });
               }, 3000);
             }}
-            count={10}
+            indicatorCount={10}
           >
             <Text style={styles.buttonText}>Default Or Ball SpinnerButton</Text>
           </SpinnerButton>
           <SpinnerButton
             buttonStyle={styles.buttonStyle}
             isLoading={this.state.barLoading}
-            spinnerAnimationType='BarIndicator'
+            spinnerType='BarIndicator'
             onPress={() => {
               this.setState({ barLoading: true });
               setTimeout(() => {
@@ -57,9 +58,9 @@ export default class App extends Component {
           <SpinnerButton
             buttonStyle={styles.buttonStyle}
             isLoading={this.state.dotLoading}
-            count={10}
+            indicatorCount={10}
             size={10}
-            spinnerAnimationType='DotIndicator'
+            spinnerType='DotIndicator'
             onPress={() => {
               this.setState({ dotLoading: true });
               setTimeout(() => {
@@ -73,7 +74,7 @@ export default class App extends Component {
           <SpinnerButton
             buttonStyle={styles.buttonStyle}
             isLoading={this.state.materialLoading}
-            spinnerAnimationType='MaterialIndicator'
+            spinnerType='MaterialIndicator'
             onPress={() => {
               this.setState({ materialLoading: true });
               setTimeout(() => {
@@ -86,7 +87,7 @@ export default class App extends Component {
           <SpinnerButton
             buttonStyle={styles.buttonStyle}
             isLoading={this.state.pacmanLoading}
-            spinnerAnimationType='PacmanIndicator'
+            spinnerType='PacmanIndicator'
             onPress={() => {
               this.setState({ pacmanLoading: true });
               setTimeout(() => {
@@ -99,7 +100,7 @@ export default class App extends Component {
           <SpinnerButton
             buttonStyle={styles.buttonStyle}
             isLoading={this.state.pulseLoading}
-            spinnerAnimationType='PulseIndicator'
+            spinnerType='PulseIndicator'
             onPress={() => {
               this.setState({ pulseLoading: true });
               setTimeout(() => {
@@ -112,7 +113,7 @@ export default class App extends Component {
           <SpinnerButton
             buttonStyle={styles.buttonStyle}
             isLoading={this.state.skypeLoading}
-            spinnerAnimationType='SkypeIndicator'
+            spinnerType='SkypeIndicator'
             onPress={() => {
               this.setState({ skypeLoading: true });
               setTimeout(() => {
@@ -125,7 +126,7 @@ export default class App extends Component {
           <SpinnerButton
             buttonStyle={styles.buttonStyle}
             isLoading={this.state.uiAcivityLoading}
-            spinnerAnimationType='UIActivityIndicator'
+            spinnerType='UIActivityIndicator'
             onPress={() => {
               this.setState({ uiAcivityLoading: true });
               setTimeout(() => {
@@ -138,7 +139,7 @@ export default class App extends Component {
           <SpinnerButton
             buttonStyle={styles.buttonStyle}
             isLoading={this.state.waveLoading}
-            spinnerAnimationType='WaveIndicator'
+            spinnerType='WaveIndicator'
             onPress={() => {
               this.setState({ waveLoading: true });
               setTimeout(() => {
