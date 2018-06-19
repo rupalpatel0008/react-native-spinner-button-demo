@@ -8,7 +8,16 @@ import {
 import styles from './styles/AppStyles';
 import SpinnerButton from 'react-native-spinner-button';
 // import SpinnerButton from './components/SpinnerButton';
-
+const colors = [
+  '#893346',
+  '#1aafb8',
+  '#bf57c3',
+  '#dead00',
+  '#666666',
+  '#4CA0F7',
+  '#123456',
+  '#F87217',
+];
 export default class App extends Component {
   constructor(props) {
     super(props);
@@ -29,7 +38,10 @@ export default class App extends Component {
       <ScrollView>
         <View style={styles.container}>
           <SpinnerButton
-            buttonStyle={styles.buttonStyle}
+            buttonStyle={[
+              styles.buttonStyle,
+              { backgroundColor: colors[0] }
+            ]}
             isLoading={this.state.defaultLoading}
             onPress={() => {
               this.setState({ defaultLoading: true });
@@ -42,7 +54,10 @@ export default class App extends Component {
             <Text style={styles.buttonText}>Default Or Ball SpinnerButton</Text>
           </SpinnerButton>
           <SpinnerButton
-            buttonStyle={styles.buttonStyle}
+            buttonStyle={[
+              styles.buttonStyle,
+              { backgroundColor: colors[1] }
+            ]}
             isLoading={this.state.barLoading}
             spinnerType='BarIndicator'
             onPress={() => {
@@ -56,7 +71,10 @@ export default class App extends Component {
             <Text style={styles.buttonText}>Bar SpinnerButton</Text>
           </SpinnerButton>
           <SpinnerButton
-            buttonStyle={styles.buttonStyle}
+            buttonStyle={[
+              styles.buttonStyle,
+              { backgroundColor: colors[2] }
+            ]}
             isLoading={this.state.dotLoading}
             indicatorCount={10}
             size={10}
@@ -72,7 +90,10 @@ export default class App extends Component {
             <Text style={styles.buttonText}>Dot SpinnerButton</Text>
           </SpinnerButton>
           <SpinnerButton
-            buttonStyle={styles.buttonStyle}
+            buttonStyle={[
+              styles.buttonStyle,
+              { backgroundColor: colors[3] }
+            ]}
             isLoading={this.state.materialLoading}
             spinnerType='MaterialIndicator'
             onPress={() => {
@@ -85,7 +106,10 @@ export default class App extends Component {
             <Text style={styles.buttonText}>Material SpinnerButton</Text>
           </SpinnerButton>
           <SpinnerButton
-            buttonStyle={styles.buttonStyle}
+            buttonStyle={[
+              styles.buttonStyle,
+              { backgroundColor: colors[4] }
+            ]}
             isLoading={this.state.pacmanLoading}
             spinnerType='PacmanIndicator'
             onPress={() => {
@@ -98,7 +122,10 @@ export default class App extends Component {
             <Text style={styles.buttonText}>Pacman SpinnerButton</Text>
           </SpinnerButton>
           <SpinnerButton
-            buttonStyle={styles.buttonStyle}
+            buttonStyle={[
+              styles.buttonStyle,
+              { backgroundColor: colors[5] }
+            ]}
             isLoading={this.state.pulseLoading}
             spinnerType='PulseIndicator'
             onPress={() => {
@@ -111,9 +138,15 @@ export default class App extends Component {
             <Text style={styles.buttonText}>Pulse SpinnerButton</Text>
           </SpinnerButton>
           <SpinnerButton
-            buttonStyle={styles.buttonStyle}
+            buttonStyle={[
+              styles.buttonStyle,
+              { backgroundColor: colors[6] }
+            ]}
             isLoading={this.state.skypeLoading}
             spinnerType='SkypeIndicator'
+            spinnerOptions={{
+              maxScale: 2
+            }}
             onPress={() => {
               this.setState({ skypeLoading: true });
               setTimeout(() => {
@@ -124,7 +157,10 @@ export default class App extends Component {
             <Text style={styles.buttonText}>Skype SpinnerButton</Text>
           </SpinnerButton>
           <SpinnerButton
-            buttonStyle={styles.buttonStyle}
+            buttonStyle={[
+              styles.buttonStyle,
+              { backgroundColor: colors[7] }
+            ]}
             isLoading={this.state.uiAcivityLoading}
             spinnerType='UIActivityIndicator'
             onPress={() => {
@@ -137,9 +173,15 @@ export default class App extends Component {
             <Text style={styles.buttonText}>UIActivity SpinnerButton</Text>
           </SpinnerButton>
           <SpinnerButton
-            buttonStyle={styles.buttonStyle}
+            buttonStyle={[
+              styles.buttonStyle,
+              { backgroundColor: colors[8] }
+            ]}
             isLoading={this.state.waveLoading}
             spinnerType='WaveIndicator'
+            spinnerOptions={{
+              waveMode: "outline"
+            }}
             onPress={() => {
               this.setState({ waveLoading: true });
               setTimeout(() => {

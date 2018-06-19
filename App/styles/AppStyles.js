@@ -14,8 +14,8 @@ export default StyleSheet.create({
     paddingHorizontal: 20,
   },
   buttonStyle: {
-    backgroundColor: 'blue',
     borderRadius: 10,
+    margin: 20,
   },
   instructions: {
     textAlign: 'center',
